@@ -11,12 +11,18 @@ jobs:
       image: rkrispin/data-pipeline-automation-with-github-actions:prod
 
     steps:
-      - name: checkout_repo
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           ref: "main"
-      - name: set-logs
+
+
+      - name: Set execute permission for set_log.sh
+        run: chmod +x ./LOGS/set_log.sh
+
+      - name: Set logs
         run: bash ./LOGS/set_log.sh
         env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_NAME: ${{ secrets.USER_NAME }}
+
